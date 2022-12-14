@@ -1,5 +1,3 @@
-//! RISC-V timer-related functionality
-
 use crate::config::CLOCK_FREQ;
 use crate::sbi::set_timer;
 use riscv::register::time;
@@ -15,6 +13,10 @@ pub fn get_time() -> usize {
 /// get current time in microseconds
 pub fn get_time_us() -> usize {
     time::read() / (CLOCK_FREQ / MICRO_PER_SEC)
+}
+
+pub fn get_time_ms() -> usize {
+    get_time_us() / 1000
 }
 
 /// set the next timer interrupt
